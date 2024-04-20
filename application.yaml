@@ -1,0 +1,37 @@
+eureka:
+  client:
+    service-url:
+         defaultZone: http://localhost:8761/eureka
+  instance: 
+    hostname: localhost
+    instance-id: ${spring.application.name}:${instanceID:${random.value}}
+
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+        - health
+  endpoint:
+    health:
+      show-details: always      
+      group:
+        custom:
+          show-components: always
+          show-details: always         
+
+microservice:
+  citizen-service:
+     endpoints:
+       endpoint: 
+         uri: http://CITIZEN-SERVICE/citizen/id/                            # /id/{id} 
+             #http://CITIZEN-SERVICE/citizen/add
+
+  vaccination-center-service:
+     endpoints:
+       endpoint: 
+         uri: http://VACCINATION-CENTER-SERVICE/vaccinationcenter/id/   # /id/{id} 
+             #http://VACCINATION-CENTER-SERVICE/vaccinationcenter/add/                                                               # /add
+                 
